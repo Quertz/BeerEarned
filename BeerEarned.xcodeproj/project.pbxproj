@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		499F5A45307CCA9600D74CDE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499F5A44307CCA9600D74CDE /* WidgetKit.framework */; };
+		499F5A47307CCA9700D74CDE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499F5A46307CCA9700D74CDE /* SwiftUI.framework */; };
+		499F5A52307CCA9900D74CDE /* BeerEarnedWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 499F5A42307CCA9600D74CDE /* BeerEarnedWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		49C9918B307C396200A21BEF /* BeerEarned Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 49C9918A307C396200A21BEF /* BeerEarned Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		499F5A50307CCA9900D74CDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49C9917E307C396200A21BEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 499F5A41307CCA9600D74CDE;
+			remoteInfo = BeerEarnedWidgetExtension;
+		};
+		49C9918C307C396200A21BEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49C9917E307C396200A21BEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49C99189307C396200A21BEF;
+			remoteInfo = "BeerEarned Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		499F5A53307CCA9900D74CDE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				499F5A52307CCA9900D74CDE /* BeerEarnedWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+		49C9919A307C396400A21BEF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolder = Product;
+			files = (
+				49C9918B307C396200A21BEF /* BeerEarned Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		499F5A42307CCA9600D74CDE /* BeerEarnedWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeerEarnedWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		499F5A44307CCA9600D74CDE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		499F5A46307CCA9700D74CDE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		49C99184307C396200A21BEF /* BeerEarned.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerEarned.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49C9918A307C396200A21BEF /* BeerEarned Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BeerEarned Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		499F5A56307CCA9900D74CDE /* Exceptions for "BeerEarnedWidget" folder in "BeerEarnedWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 499F5A41307CCA9600D74CDE /* BeerEarnedWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		499F5A48307CCA9700D74CDE /* BeerEarnedWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				499F5A56307CCA9900D74CDE /* Exceptions for "BeerEarnedWidget" folder in "BeerEarnedWidgetExtension" target */,
+			);
+			path = BeerEarnedWidget;
+			sourceTree = "<group>";
+		};
+		49C9918E307C396200A21BEF /* BeerEarned Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "BeerEarned Watch App";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		499F5A3F307CCA9600D74CDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				499F5A47307CCA9700D74CDE /* SwiftUI.framework in Frameworks */,
+				499F5A45307CCA9600D74CDE /* WidgetKit.framework in Frameworks */,
+			);
+		};
+		49C99187307C396200A21BEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		499F5A43307CCA9600D74CDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				499F5A44307CCA9600D74CDE /* WidgetKit.framework */,
+				499F5A46307CCA9700D74CDE /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49C9917D307C396200A21BEF = {
+			isa = PBXGroup;
+			children = (
+				49C9918E307C396200A21BEF /* BeerEarned Watch App */,
+				499F5A48307CCA9700D74CDE /* BeerEarnedWidget */,
+				499F5A43307CCA9600D74CDE /* Frameworks */,
+				49C99185307C396200A21BEF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49C99185307C396200A21BEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49C99184307C396200A21BEF /* BeerEarned.app */,
+				49C9918A307C396200A21BEF /* BeerEarned Watch App.app */,
+				499F5A42307CCA9600D74CDE /* BeerEarnedWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		499F5A41307CCA9600D74CDE /* BeerEarnedWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 499F5A57307CCA9900D74CDE /* Build configuration list for PBXNativeTarget "BeerEarnedWidgetExtension" */;
+			buildPhases = (
+				499F5A3E307CCA9600D74CDE /* Sources */,
+				499F5A3F307CCA9600D74CDE /* Frameworks */,
+				499F5A40307CCA9600D74CDE /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				499F5A48307CCA9700D74CDE /* BeerEarnedWidget */,
+			);
+			name = BeerEarnedWidgetExtension;
+			productName = BeerEarnedWidgetExtension;
+			productReference = 499F5A42307CCA9600D74CDE /* BeerEarnedWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		49C99183307C396200A21BEF /* BeerEarned */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49C9919B307C396400A21BEF /* Build configuration list for PBXNativeTarget "BeerEarned" */;
+			buildPhases = (
+				49C99182307C396200A21BEF /* Resources */,
+				49C9919A307C396400A21BEF /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49C9918D307C396200A21BEF /* PBXTargetDependency */,
+			);
+			name = BeerEarned;
+			productName = BeerEarned;
+			productReference = 49C99184307C396200A21BEF /* BeerEarned.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		49C99189307C396200A21BEF /* BeerEarned Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49C99197307C396400A21BEF /* Build configuration list for PBXNativeTarget "BeerEarned Watch App" */;
+			buildPhases = (
+				49C99186307C396200A21BEF /* Sources */,
+				49C99187307C396200A21BEF /* Frameworks */,
+				49C99188307C396200A21BEF /* Resources */,
+				499F5A53307CCA9900D74CDE /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				499F5A51307CCA9900D74CDE /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				49C9918E307C396200A21BEF /* BeerEarned Watch App */,
+			);
+			name = "BeerEarned Watch App";
+			productName = "BeerEarned Watch App";
+			productReference = 49C9918A307C396200A21BEF /* BeerEarned Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49C9917E307C396200A21BEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					499F5A41307CCA9600D74CDE = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					49C99183307C396200A21BEF = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					49C99189307C396200A21BEF = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = 49C99181307C396200A21BEF /* Build configuration list for PBXProject "BeerEarned" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 49C9917D307C396200A21BEF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 49C99185307C396200A21BEF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49C99183307C396200A21BEF /* BeerEarned */,
+				49C99189307C396200A21BEF /* BeerEarned Watch App */,
+				499F5A41307CCA9600D74CDE /* BeerEarnedWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		499F5A40307CCA9600D74CDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		49C99182307C396200A21BEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		49C99188307C396200A21BEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		499F5A3E307CCA9600D74CDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		49C99186307C396200A21BEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		499F5A51307CCA9900D74CDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 499F5A41307CCA9600D74CDE /* BeerEarnedWidgetExtension */;
+			targetProxy = 499F5A50307CCA9900D74CDE /* PBXContainerItemProxy */;
+		};
+		49C9918D307C396200A21BEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49C99189307C396200A21BEF /* BeerEarned Watch App */;
+			targetProxy = 49C9918C307C396200A21BEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		499F5A54307CCA9900D74CDE /* Debug configuration for PBXNativeTarget "BeerEarnedWidgetExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X3TXXRPMDJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BeerEarnedWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerEarnedWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned.watchkitapp.BeerEarnedWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		499F5A55307CCA9900D74CDE /* Release configuration for PBXNativeTarget "BeerEarnedWidgetExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X3TXXRPMDJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BeerEarnedWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerEarnedWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned.watchkitapp.BeerEarnedWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		49C99195307C396400A21BEF /* Debug configuration for PBXProject "BeerEarned" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		49C99196307C396400A21BEF /* Release configuration for PBXProject "BeerEarned" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		49C99198307C396400A21BEF /* Debug configuration for PBXNativeTarget "BeerEarned Watch App" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BeerEarned Watch App/BeerEarned Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X3TXXRPMDJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "BeerEarned reads your active calories and workouts to calculate your daily drink rewards.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		49C99199307C396400A21BEF /* Release configuration for PBXNativeTarget "BeerEarned Watch App" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BeerEarned Watch App/BeerEarned Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X3TXXRPMDJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "BeerEarned reads your active calories and workouts to calculate your daily drink rewards.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		49C9919C307C396400A21BEF /* Debug configuration for PBXNativeTarget "BeerEarned" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X3TXXRPMDJ;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		49C9919D307C396400A21BEF /* Release configuration for PBXNativeTarget "BeerEarned" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X3TXXRPMDJ;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		499F5A57307CCA9900D74CDE /* Build configuration list for PBXNativeTarget "BeerEarnedWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				499F5A54307CCA9900D74CDE /* Debug configuration for PBXNativeTarget "BeerEarnedWidgetExtension" */,
+				499F5A55307CCA9900D74CDE /* Release configuration for PBXNativeTarget "BeerEarnedWidgetExtension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49C99181307C396200A21BEF /* Build configuration list for PBXProject "BeerEarned" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49C99195307C396400A21BEF /* Debug configuration for PBXProject "BeerEarned" */,
+				49C99196307C396400A21BEF /* Release configuration for PBXProject "BeerEarned" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49C99197307C396400A21BEF /* Build configuration list for PBXNativeTarget "BeerEarned Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49C99198307C396400A21BEF /* Debug configuration for PBXNativeTarget "BeerEarned Watch App" */,
+				49C99199307C396400A21BEF /* Release configuration for PBXNativeTarget "BeerEarned Watch App" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49C9919B307C396400A21BEF /* Build configuration list for PBXNativeTarget "BeerEarned" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49C9919C307C396400A21BEF /* Debug configuration for PBXNativeTarget "BeerEarned" */,
+				49C9919D307C396400A21BEF /* Release configuration for PBXNativeTarget "BeerEarned" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49C9917E307C396200A21BEF /* Project object */;
+	validationLevel = 1;
+}
