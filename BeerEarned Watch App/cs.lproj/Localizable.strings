@@ -47,6 +47,16 @@
 "test_notification_denied" = "Notifikace nejsou povolené. Povol je v nastavení hodinek.";
 "test_notification_disabled" = "Nejprve zapni notifikace výše.";
 "test_notification_title" = "BeerEarned — test";
-"test_notification_body" = "Testovací notifikace funguje! 🥂";
+"test_notification_body" = "Testovací notifikace funguje!";
 "workouts_only" = "Pouze aktivita";
 "workouts_only_help" = "Počítají se jen zaznamenané tréninky v Apple Health, nikoliv běžný pohyb.";
+"cola" = "Coca-Cola";
+"cola_serving" = "Coca-Cola: 0,2 l = 90 kcal";
+"earned_cola_title" = "🥤 COLA ZA POHYB";
+"count_cola_one" = "%d sklenka";
+"count_cola_few" = "%d sklenky";
+"count_cola_many" = "%d sklenek";
+"info_counting" = "BeerEarned čte aktivní energii z Apple Health. V základním režimu ukazuje zvlášť zaznamenané tréninky a veškerou denní aktivní energii včetně tréninků. Tyto hodnoty se nesčítají.";
+"info_workouts_only" = "Po zapnutí „Pouze aktivita“ se počítají jen tréninky uložené v Apple Health, nikoliv běžný pohyb. Mohou sem patřit i automaticky rozpoznané nebo importované tréninky.";
+"info_privacy" = "BeerEarned žádná data neodesílá na internet, servery vývojáře ani analytickým službám. Výpočty a data pro widgety zůstávají lokálně v zařízení. Případnou synchronizaci Apple Health zajišťuje systém Apple nezávisle na této aplikaci.";
+"info_age" = "Motivy piva a prosecca jsou určené jen osobám ve věku alespoň 18 let, případně od vyšší věkové hranice podle zákonů země pobytu. Aplikace věk automaticky neověřuje. 🥤 Coca-Cola je nealkoholická možnost.";

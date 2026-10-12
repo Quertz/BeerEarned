@@ -47,6 +47,16 @@
 "test_notification_denied" = "Mitteilungen sind nicht erlaubt. In den Watch-Einstellungen aktivieren.";
 "test_notification_disabled" = "Bitte zuerst oben Mitteilungen einschalten.";
 "test_notification_title" = "BeerEarned — Test";
-"test_notification_body" = "Die Testmitteilung funktioniert! 🥂";
+"test_notification_body" = "Die Testmitteilung funktioniert!";
 "workouts_only" = "Nur Trainings";
 "workouts_only_help" = "Zählt nur aufgezeichnete Trainings in Apple Health, keine Alltagsbewegung.";
+"cola" = "Coca-Cola";
+"cola_serving" = "Coca-Cola: 0,2 l = 90 kcal";
+"earned_cola_title" = "🥤 COLA VERDIENT";
+"count_cola_one" = "%d Glas";
+"count_cola_few" = "%d Gläser";
+"count_cola_many" = "%d Gläser";
+"info_counting" = "BeerEarned liest aktive Energie aus Apple Health. Standardmäßig werden aufgezeichnete Trainings und die gesamte aktive Tagesenergie einschließlich dieser Trainings getrennt angezeigt. Die Werte dürfen nicht addiert werden.";
+"info_workouts_only" = "Mit Nur Trainings zählen ausschließlich in Apple Health gespeicherte Trainings, nicht die Alltagsbewegung. Dazu können auch automatisch erkannte oder importierte Trainings gehören.";
+"info_privacy" = "BeerEarned sendet keine Daten ins Internet, an Server des Entwicklers oder an Analysedienste. Berechnungen und Widget-Daten bleiben lokal auf dem Gerät. Eine mögliche Synchronisierung von Apple Health erfolgt unabhängig durch das Apple-System.";
+"info_age" = "Bier- und Prosecco-Motive richten sich nur an Personen ab 18 Jahren beziehungsweise ab einem höheren gesetzlichen Mindestalter am Wohnort. Die App prüft das Alter nicht automatisch. 🥤 Coca-Cola ist alkoholfrei.";

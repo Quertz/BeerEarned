@@ -10,3 +10,6 @@
 "count_prosecco_one" = "%d sklenka";
 "count_prosecco_few" = "%d sklenky";
 "count_prosecco_many" = "%d sklenek";
+"count_cola_one" = "%d sklenka";
+"count_cola_few" = "%d sklenky";
+"count_cola_many" = "%d sklenek";

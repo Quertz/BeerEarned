@@ -9,7 +9,15 @@ enum DrinkCountText {
         let isCzech = language.hasPrefix("cs")
 
         let key: String
-        if drink == "prosecco" {
+        if drink == "cola" {
+            if amount == 1 {
+                key = "count_cola_one"
+            } else if isCzech && (2...4).contains(amount) {
+                key = "count_cola_few"
+            } else {
+                key = "count_cola_many"
+            }
+        } else if drink == "prosecco" {
             if amount == 1 {
                 key = "count_prosecco_one"
             } else if isCzech && (2...4).contains(amount) {
