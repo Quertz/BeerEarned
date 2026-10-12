@@ -1,0 +1,66 @@
+import Foundation
+import WidgetKit
+import UserNotifications
+
+enum DrinkKind: String {
+    case beer
+    case prosecco
+
+    var symbol: String { self == .beer ? "🍺" : "🍸" }
+    var defaultCalories: Double { self == .beer ? 220 : 100 }
+}
+
+enum BeerStorage {
+    static let groupID = "group.cz.beerearned.shared"
+    static let widgetKind = "BeerEarnedWidget"
+
+    enum Key {
+        static let configured = "settings.configured"
+        static let drink = "settings.drink"
+        static let calories = "settings.caloriesPerDrink"
+        static let notifications = "settings.notifications"
+        static let healthRequested = "health.requested"
+        static let lastWorkoutEnd = "health.lastWorkoutEnd"
+        static let dayStart = "cache.dayStart"
+        static let totalCalories = "cache.totalCalories"
+        static let activityCalories = "cache.activityCalories"
+        static let updatedAt = "cache.updatedAt"
+    }
+
+    // A fallback lets the main app show a useful diagnostic if App Groups
+    // have not been provisioned. The widget will not display fake data.
+    static var defaults: UserDefaults {
+        UserDefaults(suiteName: groupID) ?? .standard
+    }
+
+    static var isSharedContainerAvailable: Bool {
+        UserDefaults(suiteName: groupID) != nil
+    }
+
+    static var selectedDrink: DrinkKind {
+        DrinkKind(rawValue: defaults.string(forKey: Key.drink) ?? "beer") ?? .beer
+    }
+
+    static var caloriesPerDrink: Double {
+        let value = defaults.double(forKey: Key.calories)
+        return value > 0 ? value : selectedDrink.defaultCalories
+    }
+
+    static func notifyWidget() {
+        WidgetCenter.shared.reloadTimelines(ofKind: widgetKind)
+    }
+
+    static func requestNotificationPermission() {
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.alert, .sound]) { _, _ in }
+    }
+
+    static func saveCalories(total: Double, activity: Double, dayStart: Date) {
+        guard let shared = UserDefaults(suiteName: groupID) else { return }
+        shared.set(dayStart.timeIntervalSince1970, forKey: Key.dayStart)
+        shared.set(max(0, total), forKey: Key.totalCalories)
+        shared.set(max(0, activity), forKey: Key.activityCalories)
+        shared.set(Date().timeIntervalSince1970, forKey: Key.updatedAt)
+        notifyWidget()
+    }
+}

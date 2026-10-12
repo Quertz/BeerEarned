@@ -1,88 +1,117 @@
-
+import Foundation
 import SwiftUI
 import WidgetKit
+
+private enum Shared {
+    static let groupID = "group.cz.beerearned.shared"
+    static let drink = "settings.drink"
+    static let kcal = "settings.caloriesPerDrink"
+    static let dayStart = "cache.dayStart"
+    static let total = "cache.totalCalories"
+    static let activity = "cache.activityCalories"
+    static let updated = "cache.updatedAt"
+}
 
 struct BeerEntry: TimelineEntry {
     let date: Date
     let activity: Int
     let total: Int
+    let symbol: String
+    let prosecco: Bool
+    let hasData: Bool
 }
 
 struct BeerProvider: TimelineProvider {
-
     func placeholder(in context: Context) -> BeerEntry {
-        BeerEntry(date: .now, activity: 5, total: 7)
+        BeerEntry(date: .now, activity: 5, total: 7,
+                  symbol: "🍺", prosecco: false, hasData: true)
     }
 
-    func getSnapshot(
-        in context: Context,
-        completion: @escaping (BeerEntry) -> Void
-    ) {
-        completion(
-            BeerEntry(date: .now, activity: 5, total: 7)
-        )
+    func getSnapshot(in context: Context, completion: @escaping (BeerEntry) -> Void) {
+        completion(context.isPreview ? placeholder(in: context) : entry())
     }
 
-    func getTimeline(
-        in context: Context,
-        completion: @escaping (Timeline<BeerEntry>) -> Void
-    ) {
-        let entry = BeerEntry(
-            date: .now,
-            activity: 5,
-            total: 7
-        )
+    func getTimeline(in context: Context, completion: @escaping (Timeline<BeerEntry>) -> Void) {
+        let now = Date()
+        let midnight = Calendar.current.date(
+            byAdding: .day,
+            value: 1,
+            to: Calendar.current.startOfDay(for: now)
+        ) ?? now.addingTimeInterval(86400)
 
-        completion(
-            Timeline(entries: [entry], policy: .never)
+        let next = min(now.addingTimeInterval(1800), midnight)
+        completion(Timeline(entries: [entry()], policy: .after(next)))
+    }
+
+    private func entry() -> BeerEntry {
+        let now = Date()
+        let today = Calendar.current.startOfDay(for: now)
+        let data = UserDefaults(suiteName: Shared.groupID)
+
+        let isToday = data?.object(forKey: Shared.updated) != nil &&
+            abs((data?.double(forKey: Shared.dayStart) ?? 0) -
+                today.timeIntervalSince1970) < 1
+
+        let prosecco = data?.string(forKey: Shared.drink) == "prosecco"
+        let defaultCalories: Double = prosecco ? 100 : 220
+        let specified = data?.double(forKey: Shared.kcal) ?? 0
+        let divider = specified > 0 ? specified : defaultCalories
+
+        return BeerEntry(
+            date: now,
+            activity: isToday
+                ? Int(max(0, data?.double(forKey: Shared.activity) ?? 0) / divider) : 0,
+            total: isToday
+                ? Int(max(0, data?.double(forKey: Shared.total) ?? 0) / divider) : 0,
+            symbol: prosecco ? "🍸" : "🍺",
+            prosecco: prosecco,
+            hasData: isToday
         )
     }
 }
-
 
 struct BeerWidgetView: View {
     let entry: BeerEntry
 
     @Environment(\.widgetFamily) private var family
 
+    private func count(_ value: Int) -> String {
+        entry.hasData ? String(value) : "—"
+    }
+
     var body: some View {
         Group {
             if family == .accessoryCircular {
                 VStack(spacing: 0) {
-                    Text("🍺")
-                        .font(.system(size: 19))
-
-                    Text("\(entry.total)")
-                        .font(.system(
-                            size: 26,
-                            weight: .bold,
-                            design: .rounded
-                        ))
+                    Text(entry.symbol)
+                        .font(.system(size: 18))
+                    Text(count(entry.total))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                 }
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity
-                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("🍺 BEER EARNED")
-                        .font(.caption2)
-                        .bold()
-                        .foregroundStyle(.yellow)
+                    if entry.prosecco {
+                        Text("widget_prosecco_title")
+                            .font(.caption2).bold().foregroundStyle(.yellow)
+                    } else {
+                        Text("widget_beer_title")
+                            .font(.caption2).bold().foregroundStyle(.yellow)
+                    }
 
                     HStack {
-                        Text("Activity")
+                        Text("activity_label")
                         Spacer()
-                        Text("\(entry.activity) beers")
+                        Text("\(count(entry.activity)) \(entry.symbol)")
                             .bold()
                     }
 
                     HStack {
-                        Text("Total today")
+                        Text("total_today_label")
                         Spacer()
-                        Text("\(entry.total) beers")
+                        Text("\(count(entry.total)) \(entry.symbol)")
                             .bold()
                             .foregroundStyle(.yellow)
                     }
@@ -90,29 +119,26 @@ struct BeerWidgetView: View {
                 .font(.caption2)
             }
         }
-        .containerBackground(
-            .fill.tertiary,
-            for: .widget
-        )
+        .containerBackground(.fill.tertiary, for: .widget)
     }
 }
-
 
 struct BeerEarnedWidget: Widget {
     let kind = "BeerEarnedWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(
-            kind: kind,
-            provider: BeerProvider()
-        ) { entry in
+        StaticConfiguration(kind: kind, provider: BeerProvider()) { entry in
             BeerWidgetView(entry: entry)
         }
         .configurationDisplayName("Beer Earned")
-        .description("Your daily earned beers.")
-        .supportedFamilies([
-            .accessoryRectangular,
-            .accessoryCircular
-        ])
+        .description("Your activity converted into drink equivalents.")
+        .supportedFamilies([.accessoryRectangular, .accessoryCircular])
     }
+}
+
+#Preview(as: .accessoryRectangular) {
+    BeerEarnedWidget()
+} timeline: {
+    BeerEntry(date: .now, activity: 5, total: 7,
+              symbol: "🍺", prosecco: false, hasData: true)
 }
