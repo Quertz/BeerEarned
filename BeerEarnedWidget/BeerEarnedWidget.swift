@@ -18,6 +18,7 @@ struct BeerEntry: TimelineEntry {
     let total: Int
     let symbol: String
     let prosecco: Bool
+    let cola: Bool
     let workoutsOnly: Bool
     let hasData: Bool
 }
@@ -25,7 +26,7 @@ struct BeerEntry: TimelineEntry {
 struct BeerProvider: TimelineProvider {
     func placeholder(in context: Context) -> BeerEntry {
         BeerEntry(date: .now, activity: 5, total: 7,
-                  symbol: "🍺", prosecco: false, workoutsOnly: false, hasData: true)
+                  symbol: "🍺", prosecco: false, cola: false, workoutsOnly: false, hasData: true)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (BeerEntry) -> Void) {
@@ -53,9 +54,11 @@ struct BeerProvider: TimelineProvider {
             abs((data?.double(forKey: Shared.dayStart) ?? 0) -
                 today.timeIntervalSince1970) < 1
 
-        let prosecco = data?.string(forKey: Shared.drink) == "prosecco"
+        let selectedDrink = data?.string(forKey: Shared.drink) ?? "beer"
+        let prosecco = selectedDrink == "prosecco"
+        let cola = selectedDrink == "cola"
         // Same fixed serving calories as the watch app; ignore legacy values.
-        let divider: Double = prosecco ? 135 : 220
+        let divider: Double = cola ? 90 : (prosecco ? 135 : 220)
 
         return BeerEntry(
             date: now,
@@ -63,8 +66,9 @@ struct BeerProvider: TimelineProvider {
                 ? Int(max(0, data?.double(forKey: Shared.activity) ?? 0) / divider) : 0,
             total: isToday
                 ? Int(max(0, data?.double(forKey: Shared.total) ?? 0) / divider) : 0,
-            symbol: prosecco ? "🍸" : "🍺",
+            symbol: cola ? "🥤" : (prosecco ? "🍸" : "🍺"),
             prosecco: prosecco,
+            cola: cola,
             workoutsOnly: data?.bool(forKey: Shared.workoutsOnly) ?? false,
             hasData: isToday
         )
@@ -74,8 +78,11 @@ struct BeerProvider: TimelineProvider {
 // Compact visual notation used by both the Smart Stack and complication.
 // Thresholds are expressed in drink equivalents, not kilocalories.
 private enum DrinkBadge {
-    static func label(_ count: Int, prosecco: Bool) -> String {
+    static func label(_ count: Int, prosecco: Bool, cola: Bool) -> String {
         let number = max(0, count)
+
+        // Soft drink never receives alcohol-specific warning/bottle symbols.
+        if cola { return "\(number)🥤" }
 
         if number >= 13 {
             return "\(number)☠️"
@@ -104,7 +111,7 @@ struct BeerWidgetView: View {
 
     private func badge(_ value: Int) -> String {
         guard entry.hasData else { return "—" }
-        return DrinkBadge.label(value, prosecco: entry.prosecco)
+        return DrinkBadge.label(value, prosecco: entry.prosecco, cola: entry.cola)
     }
 
     // Circular complication always shows count + selected drink, with the
@@ -113,7 +120,7 @@ struct BeerWidgetView: View {
     private var circularBadge: String {
         guard entry.hasData else { return "—" }
         let count = entry.workoutsOnly ? entry.activity : entry.total
-        return String(max(0, count)) + (entry.prosecco ? "🍸" : "🍺")
+        return String(max(0, count)) + (entry.cola ? "🥤" : (entry.prosecco ? "🍸" : "🍺"))
     }
 
     private var circularDisplayCount: Int {
@@ -224,5 +231,5 @@ struct BeerEarnedWidget: Widget {
     BeerEarnedWidget()
 } timeline: {
     BeerEntry(date: .now, activity: 5, total: 7,
-              symbol: "🍺", prosecco: false, workoutsOnly: false, hasData: true)
+              symbol: "🍺", prosecco: false, cola: false, workoutsOnly: false, hasData: true)
 }

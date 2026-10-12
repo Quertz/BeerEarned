@@ -59,3 +59,11 @@ This code cannot be compiled by the GitHub connector. The watch app and previous
 - **Version:** `MARKETING_VERSION = 0.9` for all Xcode targets; build number remains 1.
 - **Device test evidence:** first-run onboarding, HealthKit calorie readings, rectangular/circular widget propagation, and a scheduled test notification have been reported working on real Apple Watch. The final 0.9 display/layout needs an Xcode build and watch test.
 
+## Third non-alcoholic option and app information
+
+- Third drink: **Coca-Cola Original Taste** 🥤, **200 ml = 90 kcal** based on Czech-market nutritional information (45 kcal/100 ml). This is regular Coca-Cola with sugar, not Zero Sugar.
+- The onboarding and Settings picker offer beer, prosecco, and Cola; the app and widgets use the same fixed kcal conversion. The rectangular widget uses a simple N🥤 count for Cola, without alcohol-only danger or bottle milestones.
+- The information page explains all daily movement vs saved Apple Health workouts, local-only data handling, alcohol-theme age eligibility (at least 18, or a higher local legal age), and retains the existing alcohol/driving warning.
+- The existing application contains no developer-controlled network data upload or analytics SDK. Apple's own Apple Health/iCloud synchronization is separate; a legal privacy notice and accurate App Store privacy answers still need final review before distribution.
+- The app currently does **not** implement technical age verification; the adult-use notice is informational. Do not claim that the app enforces a legal age gate.
+- Both recorded-workout-only and all-movement modes continue to work for the Cola option. Notifications show the chosen drink icon, including test notifications.

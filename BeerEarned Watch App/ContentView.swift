@@ -68,9 +68,12 @@ private struct SetupView: View {
                         .font(.headline)
                         .multilineTextAlignment(.center)
 
-                    HStack(spacing: 6) {
-                        drinkButton(.beer)
-                        drinkButton(.prosecco)
+                    VStack(spacing: 6) {
+                        HStack(spacing: 6) {
+                            drinkButton(.beer)
+                            drinkButton(.prosecco)
+                        }
+                        drinkButton(.cola)
                     }
 
                     Button("setup_continue") {
@@ -178,9 +181,16 @@ private struct SetupView: View {
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
                         .minimumScaleFactor(0.75)
-                } else {
+                } else if kind == .prosecco {
                     Text("prosecco")
                     Text("prosecco_serving")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                } else {
+                    Text("cola")
+                    Text("cola_serving")
                         .font(.system(size: 9))
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
@@ -220,8 +230,12 @@ private struct DashboardView: View {
                             Text("earned_beer_title")
                                 .font(.headline)
                                 .foregroundStyle(.yellow)
-                        } else {
+                        } else if kind == .prosecco {
                             Text("earned_prosecco_title")
+                                .font(.headline)
+                                .foregroundStyle(.yellow)
+                        } else {
+                            Text("earned_cola_title")
                                 .font(.headline)
                                 .foregroundStyle(.yellow)
                         }
@@ -349,10 +363,15 @@ private struct SettingsView: View {
             Picker("drink_selection", selection: $drink) {
                 Text("beer").tag("beer")
                 Text("prosecco").tag("prosecco")
+                Text("cola").tag("cola")
             }
 
             if drink == "prosecco" {
                 Text("prosecco_serving")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            } else if drink == "cola" {
+                Text("cola_serving")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             } else {
@@ -423,10 +442,17 @@ private struct SettingsView: View {
 private struct InformationView: View {
     var body: some View {
         ScrollView {
-            Text("alcohol_disclaimer")
-                .font(.footnote)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
+            VStack(alignment: .leading, spacing: 12) {
+                Text("info_counting")
+                Text("info_workouts_only")
+                Text("info_privacy")
+                Text("info_age")
+                Text("alcohol_disclaimer")
+            }
+            .font(.footnote)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
         }
     }
 }

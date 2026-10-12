@@ -5,9 +5,24 @@ import UserNotifications
 enum DrinkKind: String {
     case beer
     case prosecco
+    case cola
 
-    var symbol: String { self == .beer ? "🍺" : "🍸" }
-    var defaultCalories: Double { self == .beer ? 220 : 135 }
+    var symbol: String {
+        switch self {
+        case .beer: return "🍺"
+        case .prosecco: return "🍸"
+        case .cola: return "🥤"
+        }
+    }
+
+    var defaultCalories: Double {
+        switch self {
+        case .beer: return 220
+        case .prosecco: return 135
+        // Czech-market original Coca-Cola: 45 kcal/100 ml.
+        case .cola: return 90
+        }
+    }
 }
 
 enum BeerStorage {
@@ -41,7 +56,7 @@ enum BeerStorage {
         DrinkKind(rawValue: defaults.string(forKey: Key.drink) ?? "beer") ?? .beer
     }
 
-    // Fixed energy per serving (beer 0.5 L / prosecco 0.2 L).
+    // Fixed energy per serving (beer 0.5 L / prosecco 0.2 L / cola 0.2 L).
     // Ignore previous editable values stored by older app versions.
     static var caloriesPerDrink: Double {
         selectedDrink.defaultCalories
@@ -66,6 +81,7 @@ enum BeerStorage {
         let content = UNMutableNotificationContent()
         content.title = String(localized: "test_notification_title")
         content.body = String(localized: "test_notification_body")
+            + " " + selectedDrink.symbol
         content.sound = .default
 
         let trigger = UNTimeIntervalNotificationTrigger(
