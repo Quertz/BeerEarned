@@ -290,7 +290,7 @@
 				DEVELOPMENT_TEAM = X3TXXRPMDJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeerEarnedWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BeerEarnedWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -324,7 +324,7 @@
 				DEVELOPMENT_TEAM = X3TXXRPMDJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeerEarnedWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BeerEarnedWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,8 +473,8 @@
 				DEVELOPMENT_TEAM = X3TXXRPMDJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "BeerEarned reads your active calories and workouts to calculate your daily drink rewards.";
+				INFOPLIST_KEY_CFBundleDisplayName = BeerCounter;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "BeerCounter reads your active calories and workouts to calculate your daily drink equivalents.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,8 +508,8 @@
 				DEVELOPMENT_TEAM = X3TXXRPMDJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "BeerEarned reads your active calories and workouts to calculate your daily drink rewards.";
+				INFOPLIST_KEY_CFBundleDisplayName = BeerCounter;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "BeerCounter reads your active calories and workouts to calculate your daily drink equivalents.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -539,7 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X3TXXRPMDJ;
-				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerCounter;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned;
@@ -557,7 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X3TXXRPMDJ;
-				INFOPLIST_KEY_CFBundleDisplayName = BeerEarned;
+				INFOPLIST_KEY_CFBundleDisplayName = BeerCounter;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.beerearned.BeerEarned;

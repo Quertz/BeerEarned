@@ -230,14 +230,20 @@ private struct DashboardView: View {
                             Text("earned_beer_title")
                                 .font(.headline)
                                 .foregroundStyle(.yellow)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
                         } else if kind == .prosecco {
                             Text("earned_prosecco_title")
                                 .font(.headline)
                                 .foregroundStyle(.yellow)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
                         } else {
                             Text("earned_cola_title")
                                 .font(.headline)
                                 .foregroundStyle(.yellow)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
                         }
 
                         Divider()
@@ -381,10 +387,6 @@ private struct SettingsView: View {
             }
 
             Toggle("workouts_only", isOn: $workoutsOnly)
-            Text("workouts_only_help")
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-
             Toggle("workout_notifications", isOn: $notificationsEnabled)
 
             Button("test_notification_button") {

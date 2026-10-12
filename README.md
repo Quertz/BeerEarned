@@ -1,4 +1,4 @@
-# BeerEarned 0.9 🍺 / 🍸
+# BeerCounter 0.9 🍺 / 🍸
 
 Standardní konkurence piv počítaných na těch ošklivých Garminech! :-D
 

@@ -221,7 +221,7 @@ struct BeerEarnedWidget: Widget {
         StaticConfiguration(kind: kind, provider: BeerProvider()) { entry in
             BeerWidgetView(entry: entry)
         }
-        .configurationDisplayName("Beer Earned")
+        .configurationDisplayName("BeerCounter")
         .description("Your activity converted into drink equivalents.")
         .supportedFamilies([.accessoryRectangular, .accessoryCircular])
     }
