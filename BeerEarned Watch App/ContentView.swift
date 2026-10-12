@@ -239,10 +239,6 @@ private struct DashboardView: View {
                             .bold()
                         }
 
-                        Text("\(Int(health.workoutCalories)) kcal")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-
                         Divider()
 
                         HStack {
@@ -259,10 +255,6 @@ private struct DashboardView: View {
                             .bold()
                             .foregroundStyle(.yellow)
                         }
-
-                        Text("\(Int(health.todayCalories)) kcal")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
 
                         if !health.hasRequestedAccess {
                             Button("connect_health") {
@@ -341,6 +333,9 @@ private struct SettingsView: View {
     @AppStorage(BeerStorage.Key.notifications, store: BeerStorage.defaults)
     private var notificationsEnabled = false
 
+    @State private var testNotificationMessage: String?
+    @State private var isSchedulingTestNotification = false
+
     var body: some View {
         Form {
             Picker("drink_selection", selection: $drink) {
@@ -359,6 +354,38 @@ private struct SettingsView: View {
             }
 
             Toggle("workout_notifications", isOn: $notificationsEnabled)
+
+            Button("test_notification_button") {
+                guard notificationsEnabled else {
+                    testNotificationMessage = String(localized: "test_notification_disabled")
+                    return
+                }
+
+                isSchedulingTestNotification = true
+                Task { @MainActor in
+                    defer { isSchedulingTestNotification = false }
+
+                    let authorized = await BeerStorage.requestNotificationPermission()
+                    guard authorized else {
+                        testNotificationMessage = String(localized: "test_notification_denied")
+                        return
+                    }
+
+                    do {
+                        try await BeerStorage.scheduleTestNotification()
+                        testNotificationMessage = String(localized: "test_notification_scheduled")
+                    } catch {
+                        testNotificationMessage = error.localizedDescription
+                    }
+                }
+            }
+            .disabled(isSchedulingTestNotification)
+
+            if let testNotificationMessage {
+                Text(testNotificationMessage)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
         }
         .navigationTitle("settings")
         .onChange(of: drink) { _, _ in

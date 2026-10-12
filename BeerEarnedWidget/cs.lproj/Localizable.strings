@@ -1,5 +1,5 @@
 "widget_beer_title" = "🍺 PIVA ZA POHYB";
-"widget_prosecco_title" = "🍸 PROSECCO ZA POHYB";
+"widget_prosecco_title" = "🍸 SKLENKY ZA POHYB";
 "activity_label" = "Cvičení";
 "total_today_label" = "Celkem dnes";
 "count_beer_one" = "%d pivo";
@@ -7,6 +7,6 @@
 "count_beer_many" = "%d piv";
 "count_beer_crate" = "BASA (20 piv)";
 "count_beer_crate_short" = "BASA";
-"count_prosecco_one" = "%d sklenka prosecca";
-"count_prosecco_few" = "%d sklenky prosecca";
-"count_prosecco_many" = "%d sklenek prosecca";
+"count_prosecco_one" = "%d sklenka";
+"count_prosecco_few" = "%d sklenky";
+"count_prosecco_many" = "%d sklenek";

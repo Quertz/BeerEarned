@@ -61,6 +61,24 @@ enum BeerStorage {
         }
     }
 
+    static func scheduleTestNotification() async throws {
+        let content = UNMutableNotificationContent()
+        content.title = String(localized: "test_notification_title")
+        content.body = String(localized: "test_notification_body")
+        content.sound = .default
+
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: 10,
+            repeats: false
+        )
+        let request = UNNotificationRequest(
+            identifier: "beerearned-test-" + UUID().uuidString,
+            content: content,
+            trigger: trigger
+        )
+        try await UNUserNotificationCenter.current().add(request)
+    }
+
     static func saveCalories(total: Double, activity: Double, dayStart: Date) {
         guard let shared = UserDefaults(suiteName: groupID) else { return }
         shared.set(dayStart.timeIntervalSince1970, forKey: Key.dayStart)

@@ -40,3 +40,10 @@ This PR has **not** been compiled with Xcode in this environment; test builds an
 - The dashboard automatically starts a HealthKit query when the user opens the watch app from its circular complication or returns to the foreground; manual refresh remains available.
 - For onboarding tests on an already-configured debug installation, clear `settings.configured` from the shared user defaults or test a clean installation. iOS/watchOS won't necessarily display permission prompts twice if the user already decided.
 - Not granting notifications saves widget-only mode; future changes are possible via Settings. The HealthKit authorization request's success callback does **not** reveal whether read access was granted.
+
+## Compact counters and notification test
+
+- The dashboard deliberately **does not show raw kcal counters**. Calculations still use the real HealthKit kcal behind the scenes.
+- Prosecco counters use shorter localized glass-unit words (CZ `1 sklenka / 2 sklenky / 5 sklenek`, EN `glass / glasses`, DE `Glas / Gläser`); no repeating “prosecco” in the counters.
+- The circular complication uses a horizontal count + emoji (`4🥂` or `4🍺`) with an orange stroked circle; watchOS may tint or simplify the rendering on certain watch faces. For 20 beers, the `BASA` milestone is preserved.
+- To verify notification delivery without exercise, enable workout notifications in Settings, tap **Test notification**, return to the watch face and wait ~10 seconds. Foreground app notifications may not appear as a banner unless a notification center delegate explicitly requests foreground presentation.

@@ -90,16 +90,30 @@ struct BeerWidgetView: View {
     var body: some View {
         Group {
             if family == .accessoryCircular {
-                VStack(spacing: 0) {
-                    Text(entry.symbol)
-                        .font(.system(size: 18))
-                    Text(circularCount)
-                        .font(.system(
-                            size: !entry.prosecco && entry.total == 20 ? 11 : 24,
-                            weight: .bold, design: .rounded
-                        ))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
+                ZStack {
+                    Circle()
+                        .stroke(.orange, lineWidth: 3)
+                        .padding(2)
+                        .widgetAccentable()
+
+                    HStack(spacing: 1) {
+                        Text(circularCount)
+                            .font(.system(
+                                size: !entry.prosecco && entry.total == 20 ? 10 : 20,
+                                weight: .bold,
+                                design: .rounded
+                            ))
+                            .foregroundStyle(.orange)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+
+                        // Champagne emoji only in the circular prosecco complication.
+                        Text(entry.prosecco ? "🥂" : "🍺")
+                            .font(.system(size: 15))
+                            .lineLimit(1)
+                    }
+                    .padding(.horizontal, 5)
+                    .minimumScaleFactor(0.5)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {

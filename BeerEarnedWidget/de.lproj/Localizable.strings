@@ -1,5 +1,5 @@
 "widget_beer_title" = "🍺 BIER VERDIENT";
-"widget_prosecco_title" = "🍸 PROSECCO VERDIENT";
+"widget_prosecco_title" = "🍸 GLÄSER VERDIENT";
 "activity_label" = "Training";
 "total_today_label" = "Heute gesamt";
 "count_beer_one" = "%d Bier";
@@ -7,6 +7,6 @@
 "count_beer_many" = "%d Bier";
 "count_beer_crate" = "KASTEN (20 Bier)";
 "count_beer_crate_short" = "KASTEN";
-"count_prosecco_one" = "%d Glas Prosecco";
-"count_prosecco_few" = "%d Gläser Prosecco";
-"count_prosecco_many" = "%d Gläser Prosecco";
+"count_prosecco_one" = "%d Glas";
+"count_prosecco_few" = "%d Gläser";
+"count_prosecco_many" = "%d Gläser";
