@@ -139,14 +139,14 @@ struct BeerWidgetView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack(spacing: 3) {
                         Text("activity_label")
-                            .font(.system(size: 11))
+                            .font(.body)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.65)
+                            .minimumScaleFactor(0.75)
 
                         Spacer(minLength: 1)
 
                         Text(badge(entry.activity))
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            .font(.body.weight(.semibold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.45)
                     }
@@ -156,14 +156,14 @@ struct BeerWidgetView: View {
 
                     HStack(spacing: 3) {
                         Text("total_today_label")
-                            .font(.system(size: 11))
+                            .font(.body)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.65)
+                            .minimumScaleFactor(0.75)
 
                         Spacer(minLength: 1)
 
                         Text(badge(entry.total))
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            .font(.body.weight(.semibold))
                             .foregroundStyle(.orange)
                             .lineLimit(1)
                             .minimumScaleFactor(0.45)
