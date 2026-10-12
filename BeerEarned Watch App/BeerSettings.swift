@@ -50,9 +50,15 @@ enum BeerStorage {
         WidgetCenter.shared.reloadTimelines(ofKind: widgetKind)
     }
 
-    static func requestNotificationPermission() {
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound]) { _, _ in }
+    // The request is triggered only by an explicit choice in onboarding
+    // or when enabling notifications in Settings.
+    static func requestNotificationPermission() async -> Bool {
+        do {
+            return try await UNUserNotificationCenter.current()
+                .requestAuthorization(options: [.alert, .sound])
+        } catch {
+            return false
+        }
     }
 
     static func saveCalories(total: Double, activity: Double, dayStart: Date) {

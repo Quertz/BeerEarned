@@ -32,3 +32,13 @@
 "beer_serving" = "Beer: 0.5 L = 220 kcal";
 "prosecco_serving" = "Prosecco: 0.2 L = 135 kcal";
 "refreshing_health" = "Refreshing…";
+"information" = "Information";
+"setup_continue" = "Continue";
+"setup_health_title" = "Apple Health access";
+"setup_health_explanation" = "Allow access to active calories and workouts. The counter needs this data to work.";
+"setup_skip_health" = "Not now";
+"setup_notification_title" = "Workout notifications";
+"setup_notification_explanation" = "Would you like an alert after each completed workout?";
+"setup_allow_notifications" = "Enable notifications";
+"setup_widget_only" = "Widget only, no notifications";
+"alcohol_disclaimer" = "This application in no way supports drinking alcohol, even in small amounts. Never drive under the influence. With love, Franta.";

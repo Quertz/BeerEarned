@@ -32,3 +32,13 @@
 "beer_serving" = "Pivo: 0,5 l = 220 kcal";
 "prosecco_serving" = "Prosecco: 0,2 l = 135 kcal";
 "refreshing_health" = "Načítám data…";
+"information" = "Informace";
+"setup_continue" = "Pokračovat";
+"setup_health_title" = "Přístup k Apple Health";
+"setup_health_explanation" = "Povol čtení aktivních kalorií a tréninků. Bez nich nebude počítadlo fungovat.";
+"setup_skip_health" = "Teď ne";
+"setup_notification_title" = "Notifikace po tréninku";
+"setup_notification_explanation" = "Chceš dostávat upozornění po dokončeném cvičení?";
+"setup_allow_notifications" = "Povolit notifikace";
+"setup_widget_only" = "Jen widget, bez notifikací";
+"alcohol_disclaimer" = "Tato aplikace v žádném případě nepodporuje pití alkoholu ani v malém množství. Nikdy nesedejte za volant pod vlivem. S láskou Franta.";

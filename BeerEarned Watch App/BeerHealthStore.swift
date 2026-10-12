@@ -23,23 +23,31 @@ final class BeerHealthStore: ObservableObject {
         BeerStorage.defaults.bool(forKey: BeerStorage.Key.healthRequested)
     }
 
-    func connect() {
+    // Completion reports that the authorization request finished successfully,
+    // not whether the user granted every read permission (HealthKit hides that).
+    func connect(onFinished: ((Bool) -> Void)? = nil) {
         guard HKHealthStore.isHealthDataAvailable() else {
             errorMessage = String(localized: "health_unavailable")
+            onFinished?(false)
             return
         }
 
         let readTypes: Set<HKObjectType> = [energyType, .workoutType()]
         store.requestAuthorization(toShare: [], read: readTypes) { [weak self] success, error in
             Task { @MainActor [weak self] in
-                guard let self else { return }
+                guard let self else {
+                    onFinished?(false)
+                    return
+                }
 
                 if let error {
                     self.errorMessage = error.localizedDescription
+                    onFinished?(false)
                     return
                 }
                 guard success else {
                     self.errorMessage = String(localized: "health_not_confirmed")
+                    onFinished?(false)
                     return
                 }
 
@@ -48,6 +56,7 @@ final class BeerHealthStore: ObservableObject {
                 self.errorMessage = nil
                 self.enableBackgroundDelivery()
                 self.refresh()
+                onFinished?(true)
             }
         }
     }
