@@ -126,9 +126,14 @@ final class BeerHealthStore: ObservableObject {
             let total = statistics?.sumQuantity()?
                 .doubleValue(for: .kilocalorie()) ?? 0
 
+            // NSPredicate is not Sendable; construct a fresh query predicate
+            // inside this @Sendable HealthKit callback rather than capturing it.
+            let workoutPredicate = HKQuery.predicateForSamples(
+                withStart: start, end: Date(), options: .strictStartDate
+            )
             let workoutQuery = HKSampleQuery(
                 sampleType: .workoutType(),
-                predicate: predicate,
+                predicate: workoutPredicate,
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: nil
             ) { [weak self] _, samples, workoutError in
