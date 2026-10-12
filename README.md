@@ -1,5 +1,7 @@
 # BeerEarned 🍺 / 🍸
 
+Standardní konkurence piv počítaných na těch ošklivých Garminech! :-D
+
 A native Apple Watch app that translates **active energy** into a playful drink-equivalent counter. This is a humorous metric, **not advice to consume alcohol**.
 
 ## Features
@@ -47,3 +49,17 @@ This PR has **not** been compiled with Xcode in this environment; test builds an
 - Prosecco counters use shorter localized glass-unit words (CZ `1 sklenka / 2 sklenky / 5 sklenek`, EN `glass / glasses`, DE `Glas / Gläser`); no repeating “prosecco” in the counters.
 - The circular complication uses a horizontal count + emoji (`4🥂` or `4🍺`) with an orange stroked circle; watchOS may tint or simplify the rendering on certain watch faces. For 20 beers, the `BASA` milestone is preserved.
 - To verify notification delivery without exercise, enable workout notifications in Settings, tap **Test notification**, return to the watch face and wait ~10 seconds. Foreground app notifications may not appear as a banner unless a notification center delegate explicitly requests foreground presentation.
+
+## Compact drink indicators (watchOS widgets)
+
+The rectangular widget contains two compact rows: \`figure.run\` for workout calories and
+\`calendar\` for total daily active calories. The circular complication shows daily total.
+Both use the same compact notation without localized drink words:
+
+- Beer: 0–6 \`N🍺\`; 7–12 \`N🍺⚠️\`; 13+ \`N☠️\`.
+- Prosecco: 0–3 \`N🍸\`; exactly 4 \`1🍾\`; 5–7 \`N🍸\`; exactly 8 \`2🍾\`;
+  9–12 \`N🍸⚠️\`; 13+ \`N☠️\`.
+- The \`BASA\` badge is kept in the full-screen drink text formatter, but the newer safety
+  indicator \`20☠️\` takes precedence in widgets.
+- For narrow circular complication spaces, symbols may be scaled down and watchOS
+  may tint or simplify the orange accent ring.

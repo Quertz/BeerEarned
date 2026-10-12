@@ -68,23 +68,40 @@ struct BeerProvider: TimelineProvider {
     }
 }
 
+// Compact visual notation used by both the Smart Stack and complication.
+// Thresholds are expressed in drink equivalents, not kilocalories.
+private enum DrinkBadge {
+    static func label(_ count: Int, prosecco: Bool) -> String {
+        let number = max(0, count)
+
+        if number >= 13 {
+            return "\(number)☠️"
+        }
+
+        if prosecco {
+            switch number {
+            case 4: return "1🍾"
+            case 8: return "2🍾"
+            case 9...12: return "\(number)🍸⚠️"
+            default: return "\(number)🍸"
+            }
+        } else {
+            if number >= 7 {
+                return "\(number)🍺⚠️"
+            }
+            return "\(number)🍺"
+        }
+    }
+}
+
 struct BeerWidgetView: View {
     let entry: BeerEntry
 
     @Environment(\.widgetFamily) private var family
 
-    private var drink: String { entry.prosecco ? "prosecco" : "beer" }
-
-    private func count(_ value: Int) -> String {
-        entry.hasData
-            ? DrinkCountText.formatted(value, drink: drink)
-            : "—"
-    }
-
-    private var circularCount: String {
-        entry.hasData
-            ? DrinkCountText.circular(entry.total, drink: drink)
-            : "—"
+    private func badge(_ value: Int) -> String {
+        guard entry.hasData else { return "—" }
+        return DrinkBadge.label(value, prosecco: entry.prosecco)
     }
 
     var body: some View {
@@ -96,56 +113,54 @@ struct BeerWidgetView: View {
                         .padding(2)
                         .widgetAccentable()
 
-                    HStack(spacing: 1) {
-                        Text(circularCount)
-                            .font(.system(
-                                size: !entry.prosecco && entry.total == 20 ? 10 : 20,
-                                weight: .bold,
-                                design: .rounded
-                            ))
-                            .foregroundStyle(.orange)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-
-                        // Champagne emoji only in the circular prosecco complication.
-                        Text(entry.prosecco ? "🥂" : "🍺")
-                            .font(.system(size: 15))
-                            .lineLimit(1)
-                    }
-                    .padding(.horizontal, 5)
-                    .minimumScaleFactor(0.5)
+                    Text(badge(entry.total))
+                        .font(.system(
+                            size: entry.total >= 10 ? 14 : 19,
+                            weight: .bold,
+                            design: .rounded
+                        ))
+                        .foregroundStyle(.orange)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.45)
+                        .padding(.horizontal, 5)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("total_today_label"))
+                .accessibilityValue(Text(badge(entry.total)))
             } else {
+                // Two values remain, but no long titles or inflected units:
+                // running figure = today's workouts, calendar = whole day.
                 VStack(alignment: .leading, spacing: 5) {
-                    if entry.prosecco {
-                        Text("widget_prosecco_title")
-                            .font(.caption2).bold().foregroundStyle(.yellow)
-                    } else {
-                        Text("widget_beer_title")
-                            .font(.caption2).bold().foregroundStyle(.yellow)
-                    }
-
-                    HStack {
-                        Text("activity_label")
-                        Spacer()
-                        Text(count(entry.activity) + " " + entry.symbol)
-                            .bold()
+                    HStack(spacing: 6) {
+                        Image(systemName: "figure.run")
+                            .font(.system(size: 14))
+                            .foregroundStyle(.secondary)
+                        Spacer(minLength: 2)
+                        Text(badge(entry.activity))
+                            .font(.system(size: 19, weight: .semibold, design: .rounded))
                             .lineLimit(1)
-                            .minimumScaleFactor(0.5)
+                            .minimumScaleFactor(0.45)
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text("activity_label"))
+                    .accessibilityValue(Text(badge(entry.activity)))
 
-                    HStack {
-                        Text("total_today_label")
-                        Spacer()
-                        Text(count(entry.total) + " " + entry.symbol)
-                            .bold()
+                    HStack(spacing: 6) {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 14))
+                            .foregroundStyle(.secondary)
+                        Spacer(minLength: 2)
+                        Text(badge(entry.total))
+                            .font(.system(size: 19, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.orange)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                            .foregroundStyle(.yellow)
+                            .minimumScaleFactor(0.45)
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text("total_today_label"))
+                    .accessibilityValue(Text(badge(entry.total)))
                 }
-                .font(.caption2)
             }
         }
         .containerBackground(.fill.tertiary, for: .widget)
