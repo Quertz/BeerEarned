@@ -234,8 +234,12 @@ final class BeerHealthStore: ObservableObject {
             let workoutReward = DrinkCountText.formatted(
                 count, drink: drink.rawValue
             )
+            // Keep the second number aligned with the selected counting mode.
+            let displayedDailyCalories = BeerStorage.defaults.bool(
+                forKey: BeerStorage.Key.workoutsOnly
+            ) ? self.workoutCalories : self.todayCalories
             let totalReward = DrinkCountText.formatted(
-                Int(self.todayCalories / BeerStorage.caloriesPerDrink),
+                Int(displayedDailyCalories / BeerStorage.caloriesPerDrink),
                 drink: drink.rawValue
             )
             notification.body = String(

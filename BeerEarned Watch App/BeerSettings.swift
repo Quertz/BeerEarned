@@ -17,6 +17,7 @@ enum BeerStorage {
     enum Key {
         static let configured = "settings.configured"
         static let drink = "settings.drink"
+        static let workoutsOnly = "settings.workoutsOnly"
         static let notifications = "settings.notifications"
         static let healthRequested = "health.requested"
         static let lastWorkoutEnd = "health.lastWorkoutEnd"

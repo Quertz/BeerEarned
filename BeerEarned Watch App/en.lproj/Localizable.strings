@@ -48,3 +48,5 @@
 "test_notification_disabled" = "Enable notifications above first.";
 "test_notification_title" = "BeerEarned — test";
 "test_notification_body" = "Test notification is working! 🥂";
+"workouts_only" = "Workouts only";
+"workouts_only_help" = "Counts recorded workouts in Apple Health, not everyday movement.";

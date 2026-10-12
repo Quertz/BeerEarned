@@ -48,3 +48,5 @@
 "test_notification_disabled" = "Bitte zuerst oben Mitteilungen einschalten.";
 "test_notification_title" = "BeerEarned — Test";
 "test_notification_body" = "Die Testmitteilung funktioniert! 🥂";
+"workouts_only" = "Nur Trainings";
+"workouts_only_help" = "Zählt nur aufgezeichnete Trainings in Apple Health, keine Alltagsbewegung.";
