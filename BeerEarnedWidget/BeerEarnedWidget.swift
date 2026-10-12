@@ -5,6 +5,7 @@ import WidgetKit
 private enum Shared {
     static let groupID = "group.cz.beerearned.shared"
     static let drink = "settings.drink"
+    static let workoutsOnly = "settings.workoutsOnly"
     static let dayStart = "cache.dayStart"
     static let total = "cache.totalCalories"
     static let activity = "cache.activityCalories"
@@ -17,13 +18,14 @@ struct BeerEntry: TimelineEntry {
     let total: Int
     let symbol: String
     let prosecco: Bool
+    let workoutsOnly: Bool
     let hasData: Bool
 }
 
 struct BeerProvider: TimelineProvider {
     func placeholder(in context: Context) -> BeerEntry {
         BeerEntry(date: .now, activity: 5, total: 7,
-                  symbol: "🍺", prosecco: false, hasData: true)
+                  symbol: "🍺", prosecco: false, workoutsOnly: false, hasData: true)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (BeerEntry) -> Void) {
@@ -63,6 +65,7 @@ struct BeerProvider: TimelineProvider {
                 ? Int(max(0, data?.double(forKey: Shared.total) ?? 0) / divider) : 0,
             symbol: prosecco ? "🍸" : "🍺",
             prosecco: prosecco,
+            workoutsOnly: data?.bool(forKey: Shared.workoutsOnly) ?? false,
             hasData: isToday
         )
     }
@@ -104,11 +107,17 @@ struct BeerWidgetView: View {
         return DrinkBadge.label(value, prosecco: entry.prosecco)
     }
 
-    // Circular complication is intentionally ALWAYS just count + drink emoji.
+    // Circular complication always shows count + selected drink, with the
+    // count derived from workouts only when the user enables that mode.
     // Warning and bottle thresholds apply only to the rectangular widget.
     private var circularBadge: String {
         guard entry.hasData else { return "—" }
-        return String(max(0, entry.total)) + (entry.prosecco ? "🍸" : "🍺")
+        let count = entry.workoutsOnly ? entry.activity : entry.total
+        return String(max(0, count)) + (entry.prosecco ? "🍸" : "🍺")
+    }
+
+    private var circularDisplayCount: Int {
+        entry.workoutsOnly ? entry.activity : entry.total
     }
 
     var body: some View {
@@ -122,7 +131,7 @@ struct BeerWidgetView: View {
 
                     Text(circularBadge)
                         .font(.system(
-                            size: entry.total >= 100 ? 12 : (entry.total >= 10 ? 15 : 19),
+                            size: circularDisplayCount >= 100 ? 12 : (circularDisplayCount >= 10 ? 15 : 19),
                             weight: .bold,
                             design: .rounded
                         ))
@@ -133,8 +142,27 @@ struct BeerWidgetView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .accessibilityElement(children: .ignore)
-                .accessibilityLabel(Text("total_today_label"))
+                .accessibilityLabel(entry.workoutsOnly ? Text("activity_label") : Text("total_today_label"))
                 .accessibilityValue(Text(circularBadge))
+            } else if entry.workoutsOnly {
+                HStack(spacing: 3) {
+                    Text("activity_label")
+                        .font(.body)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+
+                    Spacer(minLength: 1)
+
+                    Text(badge(entry.activity))
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(.orange)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.45)
+                }
+                .frame(maxHeight: .infinity, alignment: .center)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("activity_label"))
+                .accessibilityValue(Text(badge(entry.activity)))
             } else {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack(spacing: 3) {
@@ -196,5 +224,5 @@ struct BeerEarnedWidget: Widget {
     BeerEarnedWidget()
 } timeline: {
     BeerEntry(date: .now, activity: 5, total: 7,
-              symbol: "🍺", prosecco: false, hasData: true)
+              symbol: "🍺", prosecco: false, workoutsOnly: false, hasData: true)
 }

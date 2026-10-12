@@ -200,6 +200,9 @@ private struct DashboardView: View {
     @AppStorage(BeerStorage.Key.drink, store: BeerStorage.defaults)
     private var drink = "beer"
 
+    @AppStorage(BeerStorage.Key.workoutsOnly, store: BeerStorage.defaults)
+    private var workoutsOnly = false
+
     private var kind: DrinkKind {
         DrinkKind(rawValue: drink) ?? .beer
     }
@@ -239,21 +242,23 @@ private struct DashboardView: View {
                             .bold()
                         }
 
-                        Divider()
+                        if !workoutsOnly {
+                            Divider()
 
-                        HStack {
-                            Text("total_today_label")
-                            Spacer(minLength: 4)
-                            Text(
-                                DrinkCountText.formatted(
-                                    Int(health.todayCalories / divisor),
-                                    drink: kind.rawValue
-                                ) + " " + kind.symbol
-                            )
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                            .bold()
-                            .foregroundStyle(.yellow)
+                            HStack {
+                                Text("total_today_label")
+                                Spacer(minLength: 4)
+                                Text(
+                                    DrinkCountText.formatted(
+                                        Int(health.todayCalories / divisor),
+                                        drink: kind.rawValue
+                                    ) + " " + kind.symbol
+                                )
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .bold()
+                                .foregroundStyle(.yellow)
+                            }
                         }
 
                         if !health.hasRequestedAccess {
@@ -330,6 +335,9 @@ private struct SettingsView: View {
     @AppStorage(BeerStorage.Key.drink, store: BeerStorage.defaults)
     private var drink = "beer"
 
+    @AppStorage(BeerStorage.Key.workoutsOnly, store: BeerStorage.defaults)
+    private var workoutsOnly = false
+
     @AppStorage(BeerStorage.Key.notifications, store: BeerStorage.defaults)
     private var notificationsEnabled = false
 
@@ -352,6 +360,11 @@ private struct SettingsView: View {
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
+
+            Toggle("workouts_only", isOn: $workoutsOnly)
+            Text("workouts_only_help")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
 
             Toggle("workout_notifications", isOn: $notificationsEnabled)
 
@@ -389,6 +402,9 @@ private struct SettingsView: View {
         }
         .navigationTitle("settings")
         .onChange(of: drink) { _, _ in
+            BeerStorage.notifyWidget()
+        }
+        .onChange(of: workoutsOnly) { _, _ in
             BeerStorage.notifyWidget()
         }
         .onChange(of: notificationsEnabled) { _, enabled in

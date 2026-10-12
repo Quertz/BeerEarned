@@ -13,6 +13,14 @@
 - Prepare Apple Developer Program membership, distribution signing, App Store Connect listing, screenshots, app privacy disclosures, and submission to review
 - Review Apple App Store policy risks related to alcohol-themed rewards and HealthKit data. The in-app disclaimer does not guarantee approval
 
+## 1.1 — Pouze aktivita / workouts-only mode (early implementation, device test pending)
+- Opt-in setting **Pouze aktivita** (EN **Workouts only**, DE **Nur Trainings**), initially off to preserve current behavior.
+- OFF: rectangular widget shows **Aktivita** and **Dnes celkem**, circular complication shows today's total active-energy drink equivalents, main app shows both rows.
+- ON: rectangular widget and main app show just one **Aktivita** row, and circular complication shows the activity-only drink count. Workout notification summary counts use the selected mode.
+- Reuse read-only HealthKit `HKWorkout` workout energy (not all active movement). This does **not** rigorously prove the workout was manually started: automatically recognized or third-party imported workouts can appear as `HKWorkout`. Reliable manual-only filtering requires a separate, explicitly defined source strategy.
+- Persist the setting in shared App Group; send WidgetKit reload when changed. Expect system-delayed rendering in some circumstances.
+- Test both settings on physical Apple Watch and verify dashboard, rectangular widget, circular complication, and notifications.
+
 ## 2.0 — weekly progress
 - Retain daily activity and workout snapshots Monday through Sunday, with week boundaries in the user's local time zone
 - Show seven-day history and weekly summary in the watch app

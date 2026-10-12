@@ -48,3 +48,5 @@
 "test_notification_disabled" = "Nejprve zapni notifikace výše.";
 "test_notification_title" = "BeerEarned — test";
 "test_notification_body" = "Testovací notifikace funguje! 🥂";
+"workouts_only" = "Pouze aktivita";
+"workouts_only_help" = "Počítají se jen zaznamenané tréninky v Apple Health, nikoliv běžný pohyb.";
