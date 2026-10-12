@@ -30,4 +30,35 @@
 - Reuses version 2 history and version 3 friends; unlocks collectibles based on consistency and personal milestones rather than amounts consumed
 - Keep visuals and game rules carefully distinguished from encouragement to drink
 
+## 5.0 — Calendar of rare seasonal badges (proposal)
+
+**Mechanic: the Calendar Passport.** On a handful of special dates each year, the watch offers a time-limited activity challenge. Completing one adds an illustrated, year-stamped collectible badge to a permanent calendar album. These are **virtual rewards for movement, not for drinking**, and they do not multiply drink equivalents or incentivize alcohol consumption.
+
+### Four founding events
+
+| Local occasion | Badge | Suggested theme |
+| --- | --- | --- |
+| December 24 — Christmas Eve (CZ seasonal edition) | **Zlaté prasátko** / Golden Piglet | A small golden pig from a pre-holiday walk; no fasting or eating rules |
+| December 31 — New Year's Eve | **Poslední otočka** / Final Lap | End the year with some movement, not a drinking challenge |
+| June solstice (astronomical date in the user's local timezone) | **Dítě slunce** / Sun Child | Celebrate the longest daylight period in the Northern Hemisphere |
+| December solstice (astronomical date in the user's local timezone) | **Strážce světla** / Keeper of Light | Mark the return of longer days with a small amount of movement |
+
+Seasonal names/artwork should be localized or region-appropriate in CZ/EN/DE; December 24 is a Czech-specific themed event, not assumed to be a universal holiday. Future optional editions can cover the two equinoxes, birthdays (opt-in) and other country-specific holidays.
+
+### Unlock and collection rules
+
+1. **Availability:** The event is valid for one local calendar day, 00:00–23:59:59. For solstices, resolve the actual astronomical occurrence to the user's local date using a vetted yearly table or suitable astronomical calculation; do not assume it is always June 21 / December 21.
+2. **Achievable goal:** Unlock when HealthKit confirms **either at least 15 minutes of completed workout time or at least 100 active kcal during that day**, with an accessible, optionally personalized alternative considered before implementation. Values are provisional and should be user-tested, especially for varied fitness and disability needs.
+3. **No need to open the app on the holiday:** On the next HealthKit sync/open, retroactively check that day's data and award the badge even if watchOS could not wake the app on the event day. Once earned, the same event/year cannot be granted twice. No guarantee of an instantaneous background notification.
+4. **Collectible album:** Group year-stamped badges by year. Completing all four founding events in a year unlocks the rare **Strážce kalendáře** / Calendar Keeper meta-badge. Repeating an event in subsequent years adds that year's stamp rather than overwriting the earlier one.
+5. **Long-term progression:** Repeating the same event in 2 separate years unlocks a silver frame and in 3 separate years a gold frame. Missing a year never removes a badge or resets other progress.
+6. **Respect privacy and device limits:** Derive badges from read-only HealthKit data; store only the minimally necessary event/date/achievement record on-device to start, and design optional cross-device sync separately. Define timezone/DST handling, HealthKit edits/deletions, reinstall recovery and duplicate-prevention rules before production.
+7. **Notifications are optional:** A localized congratulatory alert can be sent once after a new unlock is detected, with user consent. watchOS background delivery is best-effort, so show the reward again in the app when opened.
+
+### Optional future expansion
+
+- Rare **surprise editions** revealed only on their day, with discoverable clues in the app; publish eligibility fairly so a background-delivery delay cannot unfairly deny a badge.
+- Design a small animated badge-reveal screen and optional display of a favorite collectible in the Smart Stack widget.
+- A multiplayer season could compare *collected badges* (opt-in) rather than raw HealthKit scores, with no reward for alcohol consumption.
+
 This is a planning document, not a release commitment.
