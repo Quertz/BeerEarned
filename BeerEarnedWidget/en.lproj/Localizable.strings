@@ -2,3 +2,11 @@
 "widget_prosecco_title" = "🍸 PROSECCO EARNED";
 "activity_label" = "Activity";
 "total_today_label" = "Total today";
+"count_beer_one" = "%d beer";
+"count_beer_few" = "%d beers";
+"count_beer_many" = "%d beers";
+"count_beer_crate" = "CRATE (20 beers)";
+"count_beer_crate_short" = "CRATE";
+"count_prosecco_one" = "%d glass of prosecco";
+"count_prosecco_few" = "%d glasses of prosecco";
+"count_prosecco_many" = "%d glasses of prosecco";

@@ -123,7 +123,9 @@ private struct DashboardView: View {
                     HStack {
                         Text("activity_label")
                         Spacer()
-                        Text("\(Int(health.workoutCalories / divisor)) \(kind.symbol)")
+                        Text(DrinkCountText.formatted(Int(health.workoutCalories / divisor), drink: kind.rawValue) + " " + kind.symbol)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                             .bold()
                     }
 
@@ -136,7 +138,9 @@ private struct DashboardView: View {
                     HStack {
                         Text("total_today_label")
                         Spacer()
-                        Text("\(Int(health.todayCalories / divisor)) \(kind.symbol)")
+                        Text(DrinkCountText.formatted(Int(health.todayCalories / divisor), drink: kind.rawValue) + " " + kind.symbol)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                             .bold()
                             .foregroundStyle(.yellow)
                     }

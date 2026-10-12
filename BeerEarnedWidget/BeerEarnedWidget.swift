@@ -75,8 +75,18 @@ struct BeerWidgetView: View {
 
     @Environment(\.widgetFamily) private var family
 
+    private var drink: String { entry.prosecco ? "prosecco" : "beer" }
+
     private func count(_ value: Int) -> String {
-        entry.hasData ? String(value) : "—"
+        entry.hasData
+            ? DrinkCountText.formatted(value, drink: drink)
+            : "—"
+    }
+
+    private var circularCount: String {
+        entry.hasData
+            ? DrinkCountText.circular(entry.total, drink: drink)
+            : "—"
     }
 
     var body: some View {
@@ -85,8 +95,11 @@ struct BeerWidgetView: View {
                 VStack(spacing: 0) {
                     Text(entry.symbol)
                         .font(.system(size: 18))
-                    Text(count(entry.total))
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                    Text(circularCount)
+                        .font(.system(
+                            size: !entry.prosecco && entry.total == 20 ? 11 : 24,
+                            weight: .bold, design: .rounded
+                        ))
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                 }
@@ -104,15 +117,19 @@ struct BeerWidgetView: View {
                     HStack {
                         Text("activity_label")
                         Spacer()
-                        Text("\(count(entry.activity)) \(entry.symbol)")
+                        Text(count(entry.activity) + " " + entry.symbol)
                             .bold()
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                     }
 
                     HStack {
                         Text("total_today_label")
                         Spacer()
-                        Text("\(count(entry.total)) \(entry.symbol)")
+                        Text(count(entry.total) + " " + entry.symbol)
                             .bold()
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                             .foregroundStyle(.yellow)
                     }
                 }

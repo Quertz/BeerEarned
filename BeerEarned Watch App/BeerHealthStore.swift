@@ -214,10 +214,16 @@ final class BeerHealthStore: ObservableObject {
 
             let notification = UNMutableNotificationContent()
             notification.title = String(localized: "notification_title")
+            let workoutReward = DrinkCountText.formatted(
+                count, drink: drink.rawValue
+            )
+            let totalReward = DrinkCountText.formatted(
+                Int(self.todayCalories / BeerStorage.caloriesPerDrink),
+                drink: drink.rawValue
+            )
             notification.body = String(
                 format: template, locale: .current,
-                count, drink.symbol,
-                Int(self.todayCalories / BeerStorage.caloriesPerDrink)
+                workoutReward, totalReward
             )
             notification.sound = .default
 
