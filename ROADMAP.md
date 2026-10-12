@@ -1,4 +1,4 @@
-# BeerEarned — release roadmap
+# BeerCounter — release roadmap
 
 ## 0.9 — device-tested beta (current)
 - HealthKit active energy; workouts and today's total
