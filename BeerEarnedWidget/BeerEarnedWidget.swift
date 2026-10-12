@@ -104,41 +104,49 @@ struct BeerWidgetView: View {
         return DrinkBadge.label(value, prosecco: entry.prosecco)
     }
 
+    // Circular complication is intentionally ALWAYS just count + drink emoji.
+    // Warning and bottle thresholds apply only to the rectangular widget.
+    private var circularBadge: String {
+        guard entry.hasData else { return "—" }
+        return String(max(0, entry.total)) + (entry.prosecco ? "🍸" : "🍺")
+    }
+
     var body: some View {
         Group {
             if family == .accessoryCircular {
                 ZStack {
                     Circle()
-                        .stroke(.orange, lineWidth: 3)
+                        .stroke(.orange, lineWidth: 1.25)
                         .padding(2)
                         .widgetAccentable()
 
-                    Text(badge(entry.total))
+                    Text(circularBadge)
                         .font(.system(
-                            size: entry.total >= 10 ? 14 : 19,
+                            size: entry.total >= 100 ? 12 : (entry.total >= 10 ? 15 : 19),
                             weight: .bold,
                             design: .rounded
                         ))
                         .foregroundStyle(.orange)
                         .lineLimit(1)
                         .minimumScaleFactor(0.45)
-                        .padding(.horizontal, 5)
+                        .padding(.horizontal, 4)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(Text("total_today_label"))
-                .accessibilityValue(Text(badge(entry.total)))
+                .accessibilityValue(Text(circularBadge))
             } else {
-                // Two values remain, but no long titles or inflected units:
-                // running figure = today's workouts, calendar = whole day.
                 VStack(alignment: .leading, spacing: 5) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "figure.run")
-                            .font(.system(size: 14))
-                            .foregroundStyle(.secondary)
-                        Spacer(minLength: 2)
+                    HStack(spacing: 3) {
+                        Text("activity_label")
+                            .font(.system(size: 11))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.65)
+
+                        Spacer(minLength: 1)
+
                         Text(badge(entry.activity))
-                            .font(.system(size: 19, weight: .semibold, design: .rounded))
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .lineLimit(1)
                             .minimumScaleFactor(0.45)
                     }
@@ -146,13 +154,16 @@ struct BeerWidgetView: View {
                     .accessibilityLabel(Text("activity_label"))
                     .accessibilityValue(Text(badge(entry.activity)))
 
-                    HStack(spacing: 6) {
-                        Image(systemName: "calendar")
-                            .font(.system(size: 14))
-                            .foregroundStyle(.secondary)
-                        Spacer(minLength: 2)
+                    HStack(spacing: 3) {
+                        Text("total_today_label")
+                            .font(.system(size: 11))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.65)
+
+                        Spacer(minLength: 1)
+
                         Text(badge(entry.total))
-                            .font(.system(size: 19, weight: .semibold, design: .rounded))
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundStyle(.orange)
                             .lineLimit(1)
                             .minimumScaleFactor(0.45)
@@ -165,6 +176,7 @@ struct BeerWidgetView: View {
         }
         .containerBackground(.fill.tertiary, for: .widget)
     }
+
 }
 
 struct BeerEarnedWidget: Widget {
