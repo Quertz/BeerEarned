@@ -4,9 +4,9 @@ A native Apple Watch app that translates **active energy** into a playful drink-
 
 ## Features
 
-- First launch: choose beer 🍺 / prosecco 🍸, energy per drink, and workout notifications on or off.
+- First launch: choose beer 🍺 (0.5 L / 220 kcal) or prosecco 🍸 (0.2 L / 135 kcal) and workout notifications on or off. The energy conversion is fixed, and previous customized values are ignored.
 - Read-only HealthKit: daily active energy and workouts begun today.
-- Rectangular Smart Stack widget and circular complication powered by cached data in a shared App Group.
+- Rectangular Smart Stack widget and circular complication powered by cached data in a shared App Group. Tapping a complication opens the containing watch app; it refreshes HealthKit immediately on launch or on returning to the foreground. WidgetKit reloads may still be delayed.
 - Localized CZ, EN, DE watch UI, widget and five randomized workout notification messages per language.
 
 ## Device setup in Xcode

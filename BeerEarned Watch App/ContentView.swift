@@ -25,7 +25,9 @@ struct ContentView: View {
                 }
             }
         }
-        .task {
+        // Opening from a complication launches the watch app by default.
+        // Refresh on cold launch and whenever the app returns to foreground.
+        .task(id: configured) {
             if configured && health.hasRequestedAccess {
                 health.refresh()
             }
@@ -43,8 +45,6 @@ private struct SetupView: View {
 
     @AppStorage(BeerStorage.Key.drink, store: BeerStorage.defaults)
     private var drink = "beer"
-    @AppStorage(BeerStorage.Key.calories, store: BeerStorage.defaults)
-    private var calories: Double = 220
     @AppStorage(BeerStorage.Key.notifications, store: BeerStorage.defaults)
     private var notificationsEnabled = true
 
@@ -60,13 +60,6 @@ private struct SetupView: View {
                     drinkButton(.prosecco)
                 }
 
-                Text("calories_per_drink")
-                    .font(.caption)
-
-                Stepper(value: $calories, in: 50...500, step: 10) {
-                    Text("\(Int(calories)) kcal").bold()
-                }
-
                 Toggle("workout_notifications", isOn: $notificationsEnabled)
 
                 Button("get_started", action: onComplete)
@@ -79,14 +72,23 @@ private struct SetupView: View {
     private func drinkButton(_ kind: DrinkKind) -> some View {
         Button {
             drink = kind.rawValue
-            calories = kind.defaultCalories
         } label: {
             VStack {
                 Text(kind.symbol).font(.title2)
                 if kind == .beer {
                     Text("beer")
+                    Text("beer_serving")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
                 } else {
                     Text("prosecco")
+                    Text("prosecco_serving")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -100,11 +102,9 @@ private struct DashboardView: View {
     @EnvironmentObject private var health: BeerHealthStore
     @AppStorage(BeerStorage.Key.drink, store: BeerStorage.defaults)
     private var drink = "beer"
-    @AppStorage(BeerStorage.Key.calories, store: BeerStorage.defaults)
-    private var calories: Double = 220
 
     private var kind: DrinkKind { DrinkKind(rawValue: drink) ?? .beer }
-    private var divisor: Double { calories > 0 ? calories : kind.defaultCalories }
+    private var divisor: Double { kind.defaultCalories }
 
     var body: some View {
         NavigationStack {
@@ -156,6 +156,14 @@ private struct DashboardView: View {
                         .tint(.green)
                     }
 
+                    if health.isRefreshing {
+                        HStack(spacing: 4) {
+                            ProgressView()
+                            Text("refreshing_health")
+                                .font(.caption2)
+                        }
+                    }
+
                     Button("refresh") {
                         health.refresh()
                     }
@@ -185,8 +193,6 @@ private struct DashboardView: View {
 private struct SettingsView: View {
     @AppStorage(BeerStorage.Key.drink, store: BeerStorage.defaults)
     private var drink = "beer"
-    @AppStorage(BeerStorage.Key.calories, store: BeerStorage.defaults)
-    private var calories: Double = 220
     @AppStorage(BeerStorage.Key.notifications, store: BeerStorage.defaults)
     private var notificationsEnabled = true
 
@@ -197,18 +203,20 @@ private struct SettingsView: View {
                 Text("prosecco").tag("prosecco")
             }
 
-            Stepper(value: $calories, in: 50...500, step: 10) {
-                Text("\(Int(calories)) kcal")
+            if drink == "prosecco" {
+                Text("prosecco_serving")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            } else {
+                Text("beer_serving")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
 
             Toggle("workout_notifications", isOn: $notificationsEnabled)
         }
         .navigationTitle("settings")
         .onChange(of: drink) { _, newValue in
-            calories = (DrinkKind(rawValue: newValue) ?? .beer).defaultCalories
-            BeerStorage.notifyWidget()
-        }
-        .onChange(of: calories) { _, _ in
             BeerStorage.notifyWidget()
         }
         .onChange(of: notificationsEnabled) { _, enabled in

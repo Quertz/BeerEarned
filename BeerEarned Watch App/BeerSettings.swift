@@ -7,7 +7,7 @@ enum DrinkKind: String {
     case prosecco
 
     var symbol: String { self == .beer ? "🍺" : "🍸" }
-    var defaultCalories: Double { self == .beer ? 220 : 100 }
+    var defaultCalories: Double { self == .beer ? 220 : 135 }
 }
 
 enum BeerStorage {
@@ -17,7 +17,6 @@ enum BeerStorage {
     enum Key {
         static let configured = "settings.configured"
         static let drink = "settings.drink"
-        static let calories = "settings.caloriesPerDrink"
         static let notifications = "settings.notifications"
         static let healthRequested = "health.requested"
         static let lastWorkoutEnd = "health.lastWorkoutEnd"
@@ -41,9 +40,10 @@ enum BeerStorage {
         DrinkKind(rawValue: defaults.string(forKey: Key.drink) ?? "beer") ?? .beer
     }
 
+    // Fixed energy per serving (beer 0.5 L / prosecco 0.2 L).
+    // Ignore previous editable values stored by older app versions.
     static var caloriesPerDrink: Double {
-        let value = defaults.double(forKey: Key.calories)
-        return value > 0 ? value : selectedDrink.defaultCalories
+        selectedDrink.defaultCalories
     }
 
     static func notifyWidget() {

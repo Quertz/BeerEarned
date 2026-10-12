@@ -10,6 +10,7 @@ final class BeerHealthStore: ObservableObject {
     @Published private(set) var todayCalories: Double = 0
     @Published private(set) var workoutCalories: Double = 0
     @Published private(set) var errorMessage: String?
+    @Published private(set) var isRefreshing = false
 
     private let store = HKHealthStore()
     private let energyType = HKQuantityType(.activeEnergyBurned)
@@ -100,6 +101,7 @@ final class BeerHealthStore: ObservableObject {
 
         refreshSequence += 1
         let currentRefresh = refreshSequence
+        isRefreshing = true
         let start = Calendar.current.startOfDay(for: Date())
         let predicate = HKQuery.predicateForSamples(
             withStart: start, end: Date(), options: .strictStartDate
@@ -139,6 +141,7 @@ final class BeerHealthStore: ObservableObject {
                     defer { completion?() }
 
                     guard currentRefresh == self.refreshSequence else { return }
+                    self.isRefreshing = false
 
                     self.todayCalories = max(total, 0)
                     self.workoutCalories = max(workoutTotal, 0)

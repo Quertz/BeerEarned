@@ -5,7 +5,6 @@ import WidgetKit
 private enum Shared {
     static let groupID = "group.cz.beerearned.shared"
     static let drink = "settings.drink"
-    static let kcal = "settings.caloriesPerDrink"
     static let dayStart = "cache.dayStart"
     static let total = "cache.totalCalories"
     static let activity = "cache.activityCalories"
@@ -53,9 +52,8 @@ struct BeerProvider: TimelineProvider {
                 today.timeIntervalSince1970) < 1
 
         let prosecco = data?.string(forKey: Shared.drink) == "prosecco"
-        let defaultCalories: Double = prosecco ? 100 : 220
-        let specified = data?.double(forKey: Shared.kcal) ?? 0
-        let divider = specified > 0 ? specified : defaultCalories
+        // Same fixed serving calories as the watch app; ignore legacy values.
+        let divider: Double = prosecco ? 135 : 220
 
         return BeerEntry(
             date: now,

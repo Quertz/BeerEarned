@@ -2,7 +2,6 @@
 "earned_title" = "🍺 BEER EARNED";
 "beer" = "Beer";
 "prosecco" = "Prosecco";
-"calories_per_drink" = "Calories per drink";
 "workout_notifications" = "Workout notifications";
 "get_started" = "Get started";
 "activity_label" = "Activity";
@@ -30,3 +29,6 @@
 "count_prosecco_one" = "%d glass of prosecco";
 "count_prosecco_few" = "%d glasses of prosecco";
 "count_prosecco_many" = "%d glasses of prosecco";
+"beer_serving" = "Beer: 0.5 L = 220 kcal";
+"prosecco_serving" = "Prosecco: 0.2 L = 135 kcal";
+"refreshing_health" = "Refreshing…";

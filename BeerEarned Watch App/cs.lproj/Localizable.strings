@@ -2,7 +2,6 @@
 "earned_title" = "🍺 BEER EARNED";
 "beer" = "Pivo";
 "prosecco" = "Prosecco";
-"calories_per_drink" = "Kalorie na drink";
 "workout_notifications" = "Upozornění po cvičení";
 "get_started" = "Začít";
 "activity_label" = "Cvičení";
@@ -30,3 +29,6 @@
 "count_prosecco_one" = "%d sklenka prosecca";
 "count_prosecco_few" = "%d sklenky prosecca";
 "count_prosecco_many" = "%d sklenek prosecca";
+"beer_serving" = "Pivo: 0,5 l = 220 kcal";
+"prosecco_serving" = "Prosecco: 0,2 l = 135 kcal";
+"refreshing_health" = "Načítám data…";
